@@ -61,6 +61,10 @@
         console.error("Invalid player selection");
       }
     }
+
+    let playerSelection = prompt("Enter your selection: (rock, paper, scissors)");
+    let computerSelection = computerPlay();
+    console.log(playRound(playerSelection,computerSelection));
   </script>
 </body>
 </html>
