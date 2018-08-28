@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+    function computerPlay() {
+      let selection = Math.floor(Math.random()*3);
+      switch (selection) {
+        case 0:
+        return "rock";
+        case 1:
+        return "paper";
+        case 2:
+        return "scissors";
+        default:
+        console.error("computerPlay() generated out of range value");
+      }
+    }
+  </script>
+</body>
+</html>
