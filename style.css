@@ -1,0 +1,60 @@
+* {margin: 0; padding: 0}
+
+html, body, .frame{
+  height: 100%;
+}
+
+.frame {
+  background: #4c4c4c;
+  box-sizing: border-box;
+  border: 10px solid white;
+  border-radius: 20px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+
+.header {
+  background: #3a87ad;
+  color: white;
+  text-shadow: 2px 2px 0 black;
+  border-radius: 10px 10px 0 0;
+  padding: 12px 0 5px 0;
+}
+
+.choice-buttons {
+  margin: 10px auto;
+  width: 350px;
+  height: 30px;
+}
+
+button {
+  -webkit-appearance: none;
+  width: 33.33%;
+  height: 30px;
+  float: left;
+  background: lightgrey;
+  border: none;
+  box-shadow: inset 2px 0 #4c4c4c;
+  transition: transform 0.1s;
+}
+
+button:hover {
+  box-shadow: 2px 2px 0 #3a87ad, inset 2px 0 #4c4c4c;
+  transform: translate(-1px, -1px)
+}
+
+button:active {
+  transform: translate(0.5px, 0.5px);
+  box-shadow: inset 2px 0 #4c4c4c;
+}
+
+p {
+  transition: opacity 0.5s linear;
+  opacity: 0;
+  padding: 2px;
+}
+
+.show {
+  opacity: 1;
+}

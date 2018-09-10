@@ -1,4 +1,6 @@
-const buttons = document.querySelectorAll("#choice-buttons button");
+const NUM_GAMES = 5;
+
+const buttons = document.querySelectorAll(".choice-buttons button");
 buttons.forEach((button) => button.addEventListener("click", startRound));
 
 //TODO: refactor these variables into object scope
@@ -40,7 +42,7 @@ function startRound(event) {
   outputResult(roundResult);
   outputResult(`Player: ${playerTally}, Computer: ${computerTally}, Draw: ${drawTally}`);
 
-  if (playerTally >= 5 || computerTally >= 5) {
+  if (playerTally >= NUM_GAMES || computerTally >= NUM_GAMES) {
     finishGame();
   }
 }
@@ -48,7 +50,7 @@ function startRound(event) {
 function finishGame() {
   roundOver = true;
   outputResult(`GAME OVER!`);
-  if (playerTally == 5) {
+  if (playerTally == NUM_GAMES) {
     var para = outputResult(`You win ${playerTally} to ${computerTally}`);
   } else {
     para = outputResult(`The computer wins ${computerTally} to ${playerTally}`);
@@ -114,12 +116,13 @@ function determineWinner(playerSelection, computerSelection) {
   }
 }
 
-const resultsDisplay = document.querySelector("#results-display");
+const resultsDisplay = document.querySelector(".results-display");
 
 function outputResult(string) {
   let para = document.createElement("p");
   para.textContent = string;
   resultsDisplay.appendChild(para);
+  window.setTimeout(() => para.classList.toggle("show"), 50); //callback to ensure class addition isn't instantly shown
   return para;
 }
 
