@@ -1,11 +1,38 @@
-let buttons = document.querySelectorAll("#choice-buttons button");
+const buttons = document.querySelectorAll("#choice-buttons button");
 
-buttons.forEach((button) => button.addEventListener("click", getPlayerSelection));
+buttons.forEach((button) => button.addEventListener("click", startRound));
 
-function getPlayerSelection(event) {
+//TODO: refactor these variables into object scope
+var playerTally = 0;
+var computerTally = 0;
+var drawTally = 0;
+
+function startRound(event) {
   let playerSelection = event.currentTarget.id.split("-")[0];
   let computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
+  roundResult = determineWinner(playerSelection, computerSelection);
+
+  if (roundResult) {
+    console.log(roundResult);
+    // this is really inelegant, but so is having a string return the result of the round.
+    switch(roundResult.slice(4,8)) {
+      case "Win!":
+      playerTally++;
+      break;
+      case "Lose":
+      computerTally++;
+      break;
+      case "Draw":
+      drawTally++;
+      break;
+      default:
+      console.error("Invalid round result");
+    }
+  } else {
+    console.error("Could not determine result of round");
+  }
+
+  console.log("Player: %d, Computer: %d, Draw: %d", playerTally, computerTally, drawTally);
 }
 
 function computerPlay() {
@@ -22,7 +49,7 @@ function computerPlay() {
   }
 }
 
-function playRound(playerSelection, computerSelection) {
+function determineWinner(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
   
