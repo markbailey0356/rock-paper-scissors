@@ -1,4 +1,4 @@
-game();
+
 
 function computerPlay() {
   let selection = Math.floor(Math.random()*3);
@@ -54,42 +54,5 @@ function playRound(playerSelection, computerSelection) {
     }
     default:
     console.error("Invalid player selection");
-  }
-}
-
-function game() {
-  let winCounter = 0;
-  for (let i = 1; i <= 5; i++) {
-    let playerSelection = prompt("Enter your selection: (rock, paper, scissors)");
-    let computerSelection = computerPlay();
-    let roundResult = playRound(playerSelection,computerSelection);
-    
-    if (roundResult) {
-      console.log(roundResult);
-      // this is really inelegant, but so is having a string return the result of the round.
-      switch(roundResult.slice(4,8)) {
-        case "Win!":
-        winCounter++;
-        break;
-        case "Lose":
-        winCounter--;
-        break;
-        case "Draw":
-        break;
-        default:
-        console.error("Invalid round result");
-      }
-    } else {
-      console.error("Could not determine result of round");
-    }
-  }
-
-  console.log("The final result after 5 rounds is: ");
-  if (winCounter > 0) {
-    console.log("YOU WIN!!!");
-  } else if (winCounter < 0) {
-    console.log("COMPUTER WINS...");
-  } else {
-    console.log("A DRAW!");
   }
 }
