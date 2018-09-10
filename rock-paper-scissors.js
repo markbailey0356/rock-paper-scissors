@@ -2,11 +2,20 @@ const buttons = document.querySelectorAll("#choice-buttons button");
 buttons.forEach((button) => button.addEventListener("click", startRound));
 
 //TODO: refactor these variables into object scope
-var playerTally = 0;
-var computerTally = 0;
-var drawTally = 0;
+var playerTally;
+var computerTally;
+var drawTally;
+var roundOver = true;
 
 function startRound(event) {
+  if(roundOver) {
+    clearResults();
+    playerTally = 0;
+    computerTally = 0;
+    drawTally = 0;
+    roundOver = false;
+  }
+
   let playerSelection = event.currentTarget.id.split("-")[0];
   let computerSelection = computerPlay();
   roundResult = determineWinner(playerSelection, computerSelection);
@@ -30,6 +39,22 @@ function startRound(event) {
   
   outputResult(roundResult);
   outputResult(`Player: ${playerTally}, Computer: ${computerTally}, Draw: ${drawTally}`);
+
+  if (playerTally >= 5 || computerTally >= 5) {
+    finishGame();
+  }
+}
+
+function finishGame() {
+  roundOver = true;
+  outputResult(`GAME OVER!`);
+  if (playerTally == 5) {
+    var para = outputResult(`You win ${playerTally} to ${computerTally}`);
+  } else {
+    para = outputResult(`The computer wins ${computerTally} to ${playerTally}`);
+  }
+  let totalRounds = playerTally + computerTally + drawTally;
+  para.textContent += ` after ${totalRounds} rounds`
 }
 
 function computerPlay() {
@@ -95,4 +120,11 @@ function outputResult(string) {
   let para = document.createElement("p");
   para.textContent = string;
   resultsDisplay.appendChild(para);
+  return para;
+}
+
+function clearResults() {
+  while(resultsDisplay.lastChild) {
+    resultsDisplay.removeChild(resultsDisplay.lastChild);
+  }
 }
