@@ -12,8 +12,8 @@ function startRound(event) {
   let computerSelection = computerPlay();
   roundResult = determineWinner(playerSelection, computerSelection);
 
-  if (roundResult) {
-    console.log(roundResult);
+  if (!roundResult) return console.error("Could not determine result of round");
+  
     // this is really inelegant, but so is having a string return the result of the round.
     switch(roundResult.slice(4,8)) {
       case "Win!":
@@ -32,6 +32,7 @@ function startRound(event) {
     console.error("Could not determine result of round");
   }
 
+  console.log(roundResult);
   console.log("Player: %d, Computer: %d, Draw: %d", playerTally, computerTally, drawTally);
 }
 
