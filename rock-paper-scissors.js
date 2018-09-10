@@ -1,5 +1,12 @@
-buttons = document.querySelectorAll("#choice-buttons button");
-console.log(buttons);
+let buttons = document.querySelectorAll("#choice-buttons button");
+
+buttons.forEach((button) => button.addEventListener("click", getPlayerSelection));
+
+function getPlayerSelection(event) {
+  let playerSelection = event.currentTarget.id.split("-")[0];
+  let computerSelection = computerPlay();
+  console.log(playRound(playerSelection, computerSelection));
+}
 
 function computerPlay() {
   let selection = Math.floor(Math.random()*3);
