@@ -1,4 +1,5 @@
-
+buttons = document.querySelectorAll("#choice-buttons button");
+console.log(buttons);
 
 function computerPlay() {
   let selection = Math.floor(Math.random()*3);
