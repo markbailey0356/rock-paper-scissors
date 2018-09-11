@@ -127,12 +127,8 @@ function outputResult(string) {
   para.textContent = string;
   resultsDisplay.appendChild(para);
   gameFrame.style.height = "" + (Number.parseInt(gameFrame.style.height) + para.offsetHeight) + "px";
-  resultsDisplay.removeChild(para);
-  window.setTimeout(() => { // first callback to add text element after frame has stretched to fit
-    resultsDisplay.appendChild(para);
-    window.setTimeout(() => { // second callback to ensure class addition isn't instantly shown
+  window.setTimeout(() => { // callback to show element after frame has stretched to fit
       para.classList.toggle("show")
-    }, 50); 
   }, stretchAnimationTime); 
   return para;
 }
