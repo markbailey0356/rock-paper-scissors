@@ -4,6 +4,10 @@ html, body, .frame{
   height: 100%;
 }
 
+body {
+  max-width: 800px;
+}
+
 .frame {
   background: #4c4c4c;
   box-sizing: border-box;
@@ -12,6 +16,9 @@ html, body, .frame{
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   color: white;
+  max-width: 500px;
+  margin: 0 auto;
+  min-width: 450px;
 }
 
 .header {
