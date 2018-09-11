@@ -28,4 +28,4 @@ The challenging points were mainly in the UI and were as follows:
   class needed to be added after a short delay using a `setTimeout` call-back.
 * I wanted the game frame to have a max-width and we placed with a small left margin, but I wanted it to be centered
   (`margin: 0 auto`) when the window's width got too small. I found that this could be done by setting the `min-width`
-  property of the body accordingly and then setting the frame to be `margin: 0 auto`. 
+  property of the body accordingly and then setting the frame to be `margin: 0 auto`.
