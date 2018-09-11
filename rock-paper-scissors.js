@@ -17,11 +17,11 @@ function startRound(event) {
     drawTally = 0;
     roundOver = false;
   }
-
+  
   let playerSelection = event.currentTarget.id.split("-")[0];
   let computerSelection = computerPlay();
   roundResult = determineWinner(playerSelection, computerSelection);
-
+  
   if (!roundResult) return console.error("Could not determine result of round");
   
   // this is really inelegant, but so is having a string return the result of the round.
@@ -41,7 +41,7 @@ function startRound(event) {
   
   outputResult(roundResult);
   outputResult(`Player: ${playerTally}, Computer: ${computerTally}, Draw: ${drawTally}`);
-
+  
   if (playerTally >= NUM_GAMES || computerTally >= NUM_GAMES) {
     finishGame();
   }
@@ -117,17 +117,29 @@ function determineWinner(playerSelection, computerSelection) {
 }
 
 const resultsDisplay = document.querySelector(".results-display");
+const gameFrame = document.getElementsByClassName("frame")[0];
+const gameFrameInitialHeight = gameFrame.offsetHeight;
+gameFrame.style.height = "" + gameFrame.offsetHeight + "px";
+const stretchAnimationTime = 1000 * Number.parseInt(window.getComputedStyle(gameFrame).getPropertyValue("transition-duration")); // in ms
 
 function outputResult(string) {
   let para = document.createElement("p");
   para.textContent = string;
   resultsDisplay.appendChild(para);
-  window.setTimeout(() => para.classList.toggle("show"), 50); //callback to ensure class addition isn't instantly shown
+  gameFrame.style.height = "" + (Number.parseInt(gameFrame.style.height) + para.offsetHeight) + "px";
+  resultsDisplay.removeChild(para);
+  window.setTimeout(() => { // first callback to add text element after frame has stretched to fit
+    resultsDisplay.appendChild(para);
+    window.setTimeout(() => { // second callback to ensure class addition isn't instantly shown
+      para.classList.toggle("show")
+    }, 50); 
+  }, stretchAnimationTime); 
   return para;
 }
-
-function clearResults() {
-  while(resultsDisplay.lastChild) {
-    resultsDisplay.removeChild(resultsDisplay.lastChild);
+  
+  function clearResults() {
+    while(resultsDisplay.lastChild) {
+      resultsDisplay.removeChild(resultsDisplay.lastChild);
+    }
+    gameFrame.style.height = "" + gameFrameInitialHeight + "px";
   }
-}

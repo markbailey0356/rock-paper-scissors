@@ -1,6 +1,6 @@
 * {margin: 0; padding: 0}
 
-html, body, .frame{
+html, body {
   height: 100%;
 }
 
@@ -19,6 +19,7 @@ body {
   max-width: 500px;
   margin: 0 auto;
   min-width: 450px;
+  transition: height 0.25s linear;
 }
 
 .header {
@@ -33,6 +34,10 @@ body {
   margin: 10px auto;
   width: 350px;
   height: 30px;
+}
+
+.results-display {
+  padding-bottom: 10px;
 }
 
 button {
