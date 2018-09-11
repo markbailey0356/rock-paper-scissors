@@ -38,7 +38,6 @@ that meant that I had to set the frame's `height` property to the right value. I
 that property instead of hardcoding anything, so I needed to use the `offsetHeight` property of the relevent DOM
 elements.
 
-I needed to use a pretty awkward nested callback: the first to add the text element after the frame stretches, and the
-second was to apply the `.show` class as described in the second point above. Seperation of concerns was important and I
+I needed to use a callback to show the text element after the frame stretches. Seperation of concerns was important and I
 wanted the `transition-duration` property in the CSS file to determine the duration; this meant that the JS had to fetch
-and parse the value of that property using `window.getComputedStyle()` for calculation purposes.
+and parse the value of that property using `window.getComputedStyle()` to pass to `setTimeout()`.
