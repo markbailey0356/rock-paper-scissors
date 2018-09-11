@@ -19,7 +19,7 @@ body {
   max-width: 500px;
   margin: 0 auto;
   min-width: 450px;
-  transition: height 0.5s linear;
+  transition: height 0.25s linear;
 }
 
 .header {
