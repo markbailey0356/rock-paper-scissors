@@ -120,7 +120,7 @@ const resultsDisplay = document.querySelector(".results-display");
 const gameFrame = document.getElementsByClassName("frame")[0];
 const gameFrameInitialHeight = gameFrame.offsetHeight;
 gameFrame.style.height = "" + gameFrame.offsetHeight + "px";
-const stretchAnimationTime = 1000 * Number.parseInt(window.getComputedStyle(gameFrame).getPropertyValue("transition-duration")); // in ms
+const stretchAnimationTime = 1000 * Number.parseFloat(window.getComputedStyle(gameFrame).getPropertyValue("transition-duration")); // in ms
 
 function outputResult(string) {
   let para = document.createElement("p");
